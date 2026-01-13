@@ -8,13 +8,15 @@
         /* --- 基礎設定 --- */
         :root {
             --primary-color: #00ffcc; /* 戰術螢光綠 */
+            --secondary-color: #ff3333; /* 敵對/強調紅 */
             --bg-color: #0d0d0d;      /* 深黑背景 */
-            --card-bg: #1a1a1a;       /* 卡片背景 */
+            --card-bg: #151515;       /* 卡片背景 */
             --text-color: #e0e0e0;
+            --accent-gradient: linear-gradient(135deg, #00ffcc 0%, #0088cc 100%);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
@@ -24,7 +26,7 @@
 
         /* --- 導覽列 --- */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
@@ -34,39 +36,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.1);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+        .logo span { color: var(--primary-color); }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             padding-right: 4rem;
+            margin: 0;
         }
 
         nav a {
-            color: #fff;
+            color: #ccc;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            text-transform: uppercase;
         }
 
         nav a:hover {
             color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
         }
 
         /* --- 主視覺區 (Hero Section) --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop'); 
-            /* 備註：這裡使用了一張通用軍事風格圖片，你可以換成遊戲截圖 */
+            /* 背景圖建議更換為遊戲實際截圖 */
+            background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -75,152 +84,387 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
+            font-size: 5rem;
+            margin: 0;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
+        .hero h2 {
+            font-size: 2rem;
+            margin-top: 10px;
+            color: #fff;
+            font-weight: 300;
+            letter-spacing: 5px;
         }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin: 3rem 0;
+            background: rgba(0,0,0,0.6);
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-item h3 { margin: 0; font-size: 2rem; color: var(--primary-color); }
+        .stat-item p { margin: 0; font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
 
         .cta-button {
-            padding: 15px 40px;
-            background-color: var(--primary-color);
+            padding: 18px 50px;
+            background: var(--primary-color);
             color: #000;
-            font-weight: bold;
+            font-weight: 800;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 30px var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        /* --- 特色區塊 --- */
+        /* --- 通用區塊設定 --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            border-left: 5px solid var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
             display: inline-block;
-            padding-left: 15px;
+            position: relative;
         }
 
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .section-desc {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #888;
+        }
+
+        /* --- 網格佈局 --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
+        /* --- 卡片樣式 --- */
         .card {
             background: var(--card-bg);
-            padding: 2rem;
-            border: 1px solid #333;
-            border-radius: 8px;
-            transition: border-color 0.3s;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .card:hover {
+            transform: translateY(-10px);
             border-color: var(--primary-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-tag {
+            background: #333;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
         .card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        
+        .card p {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ability-list {
+            list-style: none;
+            padding: 0;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+
+        .ability-list li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .ability-list li::before {
+            content: '►';
             color: var(--primary-color);
-            margin-top: 0;
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* --- 模式區塊特別樣式 --- */
+        .mode-card {
+            background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .mode-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- 槍匠系統區 --- */
+        .gunsmith-section {
+            background: #111;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+        
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .feature-text { flex: 1; min-width: 300px; }
+        .feature-visual { 
+            flex: 1; 
+            min-width: 300px; 
+            background: #000; 
+            height: 300px; 
+            border: 1px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         /* --- 頁尾 --- */
         footer {
-            background: #000;
+            background: #050505;
             text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #333;
-            font-size: 0.9rem;
-            color: #666;
+            padding: 4rem 2rem;
+            border-top: 1px solid #222;
+            color: #555;
+        }
+
+        footer p { margin: 0.5rem 0; }
+        footer a { color: var(--primary-color); text-decoration: none; }
+
+        /* 手機版微調 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-stats { flex-direction: column; gap: 20px; padding: 20px; }
+            nav ul { display: none; } /* 暫時隱藏選單 */
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">DELTA FORCE // OPS</div>
+        <div class="logo">DELTA <span>FORCE</span></div>
         <nav>
             <ul>
-                <li><a href="#home">首頁</a></li>
-                <li><a href="#features">遊戲特色</a></li>
+                <li><a href="#modes">三大模式</a></li>
                 <li><a href="#operators">特戰幹員</a></li>
+                <li><a href="#gunsmith">槍匠系統</a></li>
+                <li><a href="#maps">戰場地圖</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero" id="home">
-        <h1>無畏行動</h1>
-        <p>戰術射擊的新紀元。組建你的小隊，執行極限任務，體驗最真實的戰場。</p>
-        <a href="#" class="cta-button">立即加入戰場</a>
+    <section class="hero">
+        <h1>Hawk Ops</h1>
+        <h2>三角洲行動</h2>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h3>3</h3>
+                <p>核心模式</p>
+            </div>
+            <div class="stat-item">
+                <h3>UE5</h3>
+                <p>虛幻引擎打造</p>
+            </div>
+            <div class="stat-item">
+                <h3>Cross</h3>
+                <p>跨平台互通</p>
+            </div>
+        </div>
+        <a href="https://df.qq.com/" target="_blank" class="cta-button">立即加入戰場</a>
     </section>
 
-    <section class="container" id="features">
-        <div style="text-align: center;">
-            <h2 class="section-title">核心體驗</h2>
+    <section class="container" id="modes">
+        <div class="section-header">
+            <h2 class="section-title">核心玩法</h2>
+            <p class="section-desc">三大模式定義現代戰術射擊新標準</p>
         </div>
         
         <div class="grid">
-            <div class="card">
-                <h3>經典戰役回歸</h3>
-                <p>重製經典黑鷹墜落戰役，使用現代圖形技術重現摩加迪沙的激烈巷戰，感受電影級的沉浸式體驗。</p>
+            <div class="card mode-card card-content">
+                <span class="mode-icon">☢️</span>
+                <h3>烽火地帶 (Hazard Operations)</h3>
+                <p>高風險撤離玩法。選好裝備進入地圖，搜刮曼德爾磚與高價值物資。小心！若是死亡，你帶入的所有裝備將全部噴掉。</p>
+                <div class="card-tag">戰術生存 / 搜刮撤離</div>
             </div>
-            <div class="card">
-                <h3>危險行動模式</h3>
-                <p>高風險高回報的提取撤離玩法。搜刮物資、擊敗敵人，並活著將戰利品帶出戰區。</p>
+            <div class="card mode-card card-content">
+                <span class="mode-icon">⚔️</span>
+                <h3>全面戰場 (Havoc Warfare)</h3>
+                <p>32 vs 32 大規模軍事對抗。駕駛坦克、直升機與裝甲車，在超大無縫地圖中爭奪據點。體驗海陸空三位一體的立體戰爭。</p>
+                <div class="card-tag">載具作戰 / 攻防據點</div>
             </div>
-            <div class="card">
-                <h3>全面戰場破壞</h3>
-                <p>在大規模地圖中駕駛坦克、直升機與裝甲車，體驗陸海空三位一體的立體作戰。</p>
+            <div class="card mode-card card-content">
+                <span class="mode-icon">🎬</span>
+                <h3>黑鷹墜落 (Campaign)</h3>
+                <p>獲得原版電影授權，使用最新的虛幻引擎5 (UE5) 重製經典戰役。重返摩加迪沙，體驗最真實的特種作戰劇情。</p>
+                <div class="card-tag">單人劇情 / 經典重製</div>
             </div>
         </div>
     </section>
 
     <section class="container" id="operators">
-        <div style="text-align: center;">
-            <h2 class="section-title">特戰幹員</h2>
+        <div class="section-header">
+            <h2 class="section-title">G.T.I. 特戰幹員</h2>
+            <p class="section-desc">四大兵種，專屬戰術裝備與被動技能</p>
         </div>
         <div class="grid">
             <div class="card">
-                <h3>凱 (Kai)</h3>
-                <p><strong>定位：</strong> 突擊兵<br>擅長快速突入與正面交火，擁有強化身體素質的特殊裝備。</p>
+                <div class="card-content">
+                    <span class="card-tag">突擊兵 (Assault)</span>
+                    <h3>紅狼 (D-Wolf)</h3>
+                    <p><strong>本名：</strong> 凱·席爾瓦<br>擁有動力外骨骼的戰場突入者，擅長利用高機動性撕裂敵方防線。</p>
+                    <ul class="ability-list">
+                        <li><strong>戰術裝備：</strong> 動力外骨骼 (超載模式，大幅提升射速與移速)</li>
+                        <li><strong>道具：</strong> 三聯裝手炮 (發射高爆榴彈)</li>
+                        <li><strong>被動：</strong> 戰術滑鏟 (滑鏟速度與距離提升)</li>
+                    </ul>
+                </div>
             </div>
             <div class="card">
-                <h3>露娜 (Luna)</h3>
-                <p><strong>定位：</strong> 偵察兵<br>使用高科技感測箭矢標記敵人位置，為隊伍提供關鍵情報。</p>
+                <div class="card-content">
+                    <span class="card-tag">支援兵 (Support)</span>
+                    <h3>蜂醫 (Stinger)</h3>
+                    <p><strong>本名：</strong> 羅伊·斯米<br>戰地醫療專家，能用納米無人機進行遠程治療與製造煙霧掩護。</p>
+                    <ul class="ability-list">
+                        <li><strong>戰術裝備：</strong> 激素槍 (鎖定友軍進行治療)</li>
+                        <li><strong>道具：</strong> 煙幕無人機 (製造大範圍煙牆)</li>
+                        <li><strong>被動：</strong> 高效救援 (拉起倒地隊友速度更快，血量更多)</li>
+                    </ul>
+                </div>
             </div>
             <div class="card">
-                <h3>泰瑞 (Terry)</h3>
-                <p><strong>定位：</strong> 工程兵<br>能夠部署防禦設施與聲波震懾裝置，是陣地戰的核心。</p>
+                <div class="card-content">
+                    <span class="card-tag">偵察兵 (Recon)</span>
+                    <h3>露娜 (Luna)</h3>
+                    <p><strong>本名：</strong> 露娜·金<br>情報收集者，使用高科技偵察箭矢標記敵人，讓對手無所遁形。</p>
+                    <ul class="ability-list">
+                        <li><strong>戰術裝備：</strong> 探測箭矢 (飛行偵察，標記範圍內敵人)</li>
+                        <li><strong>道具：</strong> 電擊箭 (造成持續傷害與減速)</li>
+                        <li><strong>被動：</strong> 敵情分析 (傷害敵人時可短暫標記對方)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-tag">工程兵 (Engineer)</span>
+                    <h3>牧羊人 (Shepherd)</h3>
+                    <p><strong>本名：</strong> 泰瑞·穆薩<br>防禦大師，能夠部署聲波陷阱與防禦設施，是陣地戰的核心。</p>
+                    <ul class="ability-list">
+                        <li><strong>戰術裝備：</strong> 聲波震懾 (部署裝置減速並傷害敵人)</li>
+                        <li><strong>道具：</strong> 聲波陷阱 (黏著式陷阱)</li>
+                        <li><strong>被動：</strong> 減傷防護 (對爆炸傷害有抗性)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container gunsmith-section" id="gunsmith">
+        <div class="feature-row">
+            <div class="feature-text">
+                <h2 class="section-title" style="border-left:none; padding:0;">極致槍匠系統</h2>
+                <p>《三角洲行動》繼承了寫實風格的槍械改裝。從槍管、槍托、握把到瞄準鏡，每一個配件都會真實影響武器的<strong>後座力、舉鏡速度與射程</strong>。</p>
+                <p>在「烽火地帶」中，你甚至可以改裝出價值連城的頂級武器，並將其帶出戰場交易。</p>
+                <br>
+                <div class="card-tag">熱門槍械</div>
+                <p>M4A1 / AS Val / K416 / AWP</p>
+            </div>
+            <div class="feature-visual">
+                [ 槍械改裝介面示意圖 ]
+            </div>
+        </div>
+    </section>
+    
+    <section class="container" id="maps">
+        <div class="section-header">
+            <h2 class="section-title">經典地圖重現</h2>
+        </div>
+        <div class="grid">
+            <div class="card card-content">
+                <h3>長弓溪谷 (Longbow Creek)</h3>
+                <p>經典地圖回歸。開闊的河谷地形，適合狙擊手與載具作戰。視野開闊，危機四伏。</p>
+            </div>
+            <div class="card card-content">
+                <h3>零號大壩 (Zero Dam)</h3>
+                <p>烽火地帶的主要地圖。結構複雜的大壩內部與行政區，適合近距離CQB作戰與資源搜刮。</p>
+            </div>
+             <div class="card card-content">
+                <h3>攀升 (Ascension)</h3>
+                <p>全面戰場模式地圖。高低差極大的山地作戰，滑索與空中載具是制勝關鍵。</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 三角洲行動粉絲網頁製作範本. Design for h1130621.</p>
-        <p>本網頁為練習作品，與遊戲官方無關。</p>
+        <p>&copy; 2024 三角洲行動 (Delta Force: Hawk Ops) 粉絲網頁 - Design for h1130621.</p>
+        <p>資料來源基於官方測試版本，遊戲內容可能隨更新變動。</p>
+        <p style="font-size: 0.8rem; color: #444;">本網頁為非官方練習作品，所有遊戲商標歸騰訊/天美工作室群所有。</p>
     </footer>
 
 </body>
